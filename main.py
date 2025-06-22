@@ -3,7 +3,6 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver import ChromeOptions, FirefoxOptions
 from selenium.webdriver.common.by import By
 import csv
-from time import sleep
 
 class Webdriver:
     def __init__(self, browser: str="chrome", headless: bool=False) -> None:
@@ -109,12 +108,10 @@ if __name__ == '__main__':
                 avaliacao = livro.find_element(By.XPATH, './/p[contains(@class, "star-rating")]').get_attribute('class')  
                 avaliacao = avaliacao.split()[-1] # Pega somente a avaliação
             
-                #sleep(1)
                 escritor.writerow([titulo, preco, disponibilidade, avaliacao])
                 
             try:
                 next_button = navegador.find_element(By.XPATH, '//li[@class="next"]/a').click()
-                #sleep(2)
             except:
                 print("Fim das páginas.")
                 break
